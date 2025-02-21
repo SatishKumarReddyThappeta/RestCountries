@@ -76,10 +76,10 @@ const HomePage = () => {
   return (
    <section className={`min-h-screen bg-[#fafafa] mt-[4px] px-4 dark:bg-[#202d36] dark:text-white`}>
     <section className="pt-12 flex flex-col gap-12 md:gap-12 md:px-20">
-     <div className="relative h-auto flex flex-col  gap-16 md:gap-12 md:flex-row md:justify-between ">
+     <section className="relative h-auto flex flex-col  gap-16 md:gap-12 md:flex-row md:justify-between ">
         <IoSearchOutline className="w-[25px] h-[25px] absolute top-[10%] md:top-[25%] left-[5%] md:left-[2%]"/>
         <input  type="text" value={inputText}  placeholder="Search for a country..." className="select-none w-full md:w-4/12 h-[60px] p-4 pl-24 shadow-md rounded-md dark:bg-[#2b3743] dark:text-white md:w-4/12" onChange={handleInput}/>
-        <div className="w-1/2 md:w-4/12 xl:w-2/12 h-auto flex flex-col gap-1 dark:bg-[#2b3642] relative select-none rounded-md">
+        <section className="w-1/2 md:w-4/12 xl:w-2/12 h-auto flex flex-col gap-1 dark:bg-[#2b3642] relative select-none rounded-md">
           <div className="flex gap-2 justify-between items-center shadow-lg h-10 px-4 py-8 rounded-md dark:bg-[#2b3642] bg-white cursor-pointer" onClick={() => setShowFilter((prev) => !prev)}>
             <div className="text-sm md:text-[16px]" >{regionName.length >0 ? regionName : "Filter by Region"}</div>
             <div>
@@ -102,8 +102,8 @@ const HomePage = () => {
               ))}
             </div>
           )}
-        </div>
-     </div>
+        </section>
+     </section>
      <section className="flex justify-center gap-12 md:flex-row flex-wrap md:gap-12 md:justify-between">
           {
             allCountries.length ==0 ? <Loading /> : filterCountriesData.length ==0 ? <NoDataFound />
