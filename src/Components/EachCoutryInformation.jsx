@@ -11,19 +11,18 @@ const EachCoutryInformation = () => {
   
    ;
   const presentData = countriesData.find((eachCountry) => eachCountry?.name?.common == name)
-  console.log(presentData);
+  // console.log(presentData);
 
-let currency =(presentData?.currencies);
-let currencyName;
-if(currency){
-  currencyName=Object.values(currency)[0].name;
-}
+  let currency =(presentData?.currencies);
+  let currencyName;
+  if(currency){
+    currencyName=Object.values(currency)[0].name;
+  }
 
-let languages;
-if(presentData?.languages){
-  languages=Object.values(presentData?.languages);
-}
-console.log(languages);
+  let languages;
+  if(presentData?.languages){
+    languages=Object.values(presentData?.languages);
+  }
 
   
   return (
