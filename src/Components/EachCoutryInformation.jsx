@@ -6,11 +6,11 @@ import { BiArrowBack } from "react-icons/bi";
 const EachCoutryInformation = () => {
 
   const {countriesData} = useContext(ThemeContext);
-  const {ccn3} = useParams();
+  const {name} = useParams();
   // console.log(name);
   
    ;
-  const presentData = countriesData.find((eachCountry) => eachCountry?.ccn3 == ccn3)
+  const presentData = countriesData.find((eachCountry) => eachCountry?.ccn3 == name)
   console.log(presentData);
 
   let currency =(presentData?.currencies);
