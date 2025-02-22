@@ -1,22 +1,23 @@
-import React from 'react'
-import { useState } from "react"
-import Header from './Components/Header'
-import HomePage from './Components/HomePage';
-
-
+import React from 'react';
+import { ThemeProvider } from './Components/ThemeContext';
+import LayOut from './Components/LayOut';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import IncorrectURL from './Components/IncorrectURL';
+import Header from './Components/Header';
+import EachCountryInformation from './Components/EachCoutryInformation';
 const App = () => {
-  const [dark, setDark] = useState(false);
-
-  const toggleMode =()=>{
-    setDark(!dark)
-    document.body.classList.toggle('dark')
-  }
-
   return (
-    <div className='min-h-screen dark:bg-black overflow-hidden'>
-      <Header toggleMode={toggleMode}/>
-      <HomePage />
-    </div>
+    <ThemeProvider>
+        {/* <LayOut/> */}
+        <Header/>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<LayOut />}/>
+            <Route path="country/:name" element={<EachCountryInformation />} />
+            <Route path='*' element={<IncorrectURL />}/>
+          </Routes>
+        </BrowserRouter>
+    </ThemeProvider>
   )
 }
 
