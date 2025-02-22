@@ -6,12 +6,12 @@ import { BiArrowBack } from "react-icons/bi";
 const EachCoutryInformation = () => {
 
   const {countriesData} = useContext(ThemeContext);
-  const {name} = useParams();
+  const {ccn3} = useParams();
   // console.log(name);
   
    ;
-  const presentData = countriesData.find((eachCountry) => eachCountry?.name?.common == name)
-  // console.log(presentData);
+  const presentData = countriesData.find((eachCountry) => eachCountry?.ccn3 == ccn3)
+  console.log(presentData);
 
   let currency =(presentData?.currencies);
   let currencyName;
@@ -49,7 +49,7 @@ const EachCoutryInformation = () => {
                       <div><span className="font-md">Currencies : <span className="text-[14px] font-md text-gray-500">{currencyName || 'No currency'}</span></span></div>
                       <div><span className="font-md">Languages : <span className="text-[14px] font-md text-gray-500">{
                       languages?.length>0 ? languages?.map((eachLanguage)=>{
-                        return <span>{`${eachLanguage}, `}</span>
+                        return <span key={eachLanguage}>{`${eachLanguage}, `}</span>
                       })  : "No Languages"
                       }</span></span></div>
                     </div>
@@ -58,8 +58,8 @@ const EachCoutryInformation = () => {
                     <div className="text-[14px] font-bold mt-4">Border Countries:</div>
                     <div className="flex gap-2 ">
                       {
-                        presentData?.borders ? presentData?.borders.map((border)=>{
-                         return <div key={border[0]} className="w-[120px] h-[30px] shadow-[1px_0px_5px_#ccc] rounded-sm flex items-center justify-center text-xs">
+                        presentData?.borders ? presentData?.borders.map((border, index)=>{
+                         return <div key={index} className="w-[120px] h-[30px] shadow-[1px_0px_5px_#ccc] rounded-sm flex items-center justify-center text-xs">
                           {border}
                          </div>
                         })

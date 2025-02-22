@@ -316,8 +316,7 @@ const HomePage = () => {
             {
               allCountries.length ==0 ? <Loading /> : filterCountriesData.length ==0 ? <NoDataFound />
               :filterCountriesData.map((eachCountry)=>{
-                // console.log(eachCountry?.name);
-                return  (<Link to={`/country/${eachCountry?.name?.common}`} key={eachCountry?.name?.common}>
+                return  (<Link to={`/country/${eachCountry?.ccn3}`} key={eachCountry?.name?.common}>
                    <EachCountry eachCountry={eachCountry}/>
                 </Link>)
                
