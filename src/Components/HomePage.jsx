@@ -208,55 +208,47 @@ const HomePage = () => {
      <section className="relative h-auto flex flex-col  gap-8 md:gap-12 md:flex-row md:justify-between ">
         <IoSearchOutline className="w-[25px] h-[25px] absolute top-[3%] md:top-[25%] left-[5%] md:left-[2%]"/>
         <input  type="text" value={inputText}  placeholder="Search for a country..." className="select-none w-full md:w-4/12 h-[60px] p-4 pl-24 shadow-md rounded-md dark:bg-[#2b3743] dark:text-white md:w-4/12" onChange={handleInput}/>
-        <section className="w-1/2 md:w-4/12 xl:w-2/12 h-auto flex flex-col gap-1 dark:bg-[#2b3642] relative select-none rounded-md">
-        <div className="flex gap-2 justify-between items-center shadow-lg h-10 px-4 py-8 rounded-md dark:bg-[#2b3642] bg-white cursor-pointer" onClick={() => setShowFilter((prev) => ({...prev, sortArea : !prev.sortArea}))}>
-            <div className="text-sm md:text-[16px]" >{sortAreaWhich.length >0 ? sortAreaWhich : "Area"}</div>
+        <section className="relative h-auto flex flex-col gap-8 md:gap-12 md:flex-row md:justify-between z-50">
+        <section className="w-1/2 md:w-4/12 xl:w-2/12 h-auto flex flex-col gap-1 dark:bg-[#2b3642] relative select-none rounded-md z-[50]">
+          <div className="flex gap-2 justify-between items-center shadow-lg h-10 px-4 py-8 rounded-md dark:bg-[#2b3642] bg-white cursor-pointer"
+            onClick={() => setShowFilter((prev) => ({ ...prev, sortArea: !prev.sortArea }))}>
+            <div className="text-sm md:text-[16px]">{sortAreaWhich.length > 0 ? sortAreaWhich : "Area"}</div>
             <div>
-              {showFilter.sortArea ? (
-                <FaChevronDown size={15} />   
-              ) : (
-                <FaChevronUp size={15} />
-              )}
+              {showFilter.sortArea ? <FaChevronDown size={15} /> : <FaChevronUp size={15} />}
             </div>
           </div>
           {showFilter.sortArea && (
-            <div className="absolute top-full mt-1 left-0 w-full px-4 py-2 gap-2 bg-white shadow-md rounded-lg dark:bg-[#2b3642] z-1">
+            <div className="absolute top-full mt-1 left-0 w-full px-4 py-2 gap-2 bg-white shadow-md rounded-lg dark:bg-[#2b3642] z-[100]">
               {sortArea.map((region) => (
-                <div
-                  key={region}
-                  className="cursor-pointer dark:hover:bg-gray-800 p-2 hover:bg-gray-100" onClick={handleSortArea}
-                >
+                <div key={region} className="cursor-pointer dark:hover:bg-gray-800 p-2 hover:bg-gray-100"
+                  onClick={handleSortArea}>
                   {region}
                 </div>
               ))}
             </div>
           )}
         </section>
-        <section className="w-1/2 md:w-4/12 xl:w-2/12 h-auto flex flex-col gap-1 dark:bg-[#2b3642] relative select-none rounded-md">
-        <div className="flex gap-2 justify-between items-center shadow-lg h-10 px-4 py-8 rounded-md dark:bg-[#2b3642] bg-white cursor-pointer" onClick={() => setShowFilter((prev) => ({...prev, sort : !prev.sort}))}>
-            <div className="text-sm md:text-[16px]" >{sortPopulationWhich.length >0 ? sortPopulationWhich : "Population"}</div>
+        <section className="w-1/2 md:w-4/12 xl:w-2/12 h-auto flex flex-col gap-1 dark:bg-[#2b3642] relative select-none rounded-md z-[40]">
+          <div className="flex gap-2 justify-between items-center shadow-lg h-10 px-4 py-8 rounded-md dark:bg-[#2b3642] bg-white cursor-pointer"
+            onClick={() => setShowFilter((prev) => ({ ...prev, sort: !prev.sort }))}>
+            <div className="text-sm md:text-[16px]">{sortPopulationWhich.length > 0 ? sortPopulationWhich : "Population"}</div>
             <div>
-              {showFilter.sort ? (
-                <FaChevronDown size={15} />   
-              ) : (
-                <FaChevronUp size={15} />
-              )}
+              {showFilter.sort ? <FaChevronDown size={15} /> : <FaChevronUp size={15} />}
             </div>
           </div>
           {showFilter.sort && (
-            <div className="absolute top-full mt-1 left-0 w-full px-4 py-2 gap-2 bg-white shadow-md rounded-lg dark:bg-[#2b3642] z-1">
+            <div className="absolute top-full mt-1 left-0 w-full px-4 py-2 gap-2 bg-white shadow-md rounded-lg dark:bg-[#2b3642] z-[90]">
               {sortAscOrDesc.map((region) => (
-                <div
-                  key={region}
-                  className="cursor-pointer dark:hover:bg-gray-800 p-2 hover:bg-gray-100" onClick={handleSort}
-                >
+                <div key={region} className="cursor-pointer dark:hover:bg-gray-800 p-2 hover:bg-gray-100"
+                  onClick={handleSort}>
                   {region}
                 </div>
               ))}
             </div>
           )}
         </section>
-        <section className="w-1/2 md:w-4/12 xl:w-2/12 h-auto flex flex-col gap-1 dark:bg-[#2b3642] relative select-none rounded-md">
+      </section>
+        <section className="w-1/2 md:w-4/12 xl:w-2/12 h-auto flex flex-col gap-1 dark:bg-[#2b3642] relative select-none rounded-md z-[30]">
         <div className={`flex gap-2 justify-between items-center shadow-lg h-10 px-4 py-8 rounded-md dark:bg-[#2b3642] bg-white ${regionName.length>0 ? 'cursor-pointer' : 'cursor-not-allowed'}`}
          onClick={() => {
           if(regionName.length==0){
@@ -274,7 +266,7 @@ const HomePage = () => {
             </div>
           </div>
           {showFilter.subRegion && (
-            <div className="absolute top-full mt-1 left-0 w-full px-4 py-2 gap-2 bg-white shadow-md rounded-lg dark:bg-[#2b3642] z-1">
+            <div className="absolute top-full mt-1 left-0 w-full px-4 py-2 gap-2 bg-white shadow-md rounded-lg dark:bg-[#2b3642] z-[80]">
               {subRegionNames.map((region) => (
                 <div
                   key={region}
