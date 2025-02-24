@@ -41,7 +41,6 @@ const HomePage = () => {
       // console.log(filteredData);
       setFilterCountriesData(filteredData);
     }else if(subRegionName.length>0){
-      console.log('last');
       console.log(subRegionData);
       setFilterCountriesData(subRegionData);
     }else{
@@ -178,7 +177,6 @@ const HomePage = () => {
     setSortAreaWhich(selectedArea);
   }
 
-
   const fetchData =() =>{
     if (countriesData && countriesData.length > 0) {
       setAllCountries(countriesData);
@@ -211,7 +209,7 @@ const HomePage = () => {
           <section className="w-1/2 md:w-4/12 xl:w-2/12 h-auto flex flex-col gap-1 dark:bg-[#2b3642] relative select-none rounded-md z-[50]">
             <div className="flex gap-2 justify-between items-center shadow-lg h-10 px-4 py-8 rounded-md dark:bg-[#2b3642] bg-white cursor-pointer"
               onClick={() => setShowFilter((prev) => ({ ...prev, sortArea: !prev.sortArea }))}>
-              <div className="text-sm md:text-[16px]">{sortAreaWhich.length > 0 ? sortAreaWhich : "Area"}</div>
+              <div className="text-sm md:text-[16px]">{sortAreaWhich.length > 0 ? sortAreaWhich : "Sort By Area"}</div>
               <div>
                 {showFilter.sortArea ? <FaChevronDown size={15} /> : <FaChevronUp size={15} />}
               </div>
@@ -230,7 +228,7 @@ const HomePage = () => {
           <section className="w-1/2 md:w-4/12 xl:w-2/12 h-auto flex flex-col gap-1 dark:bg-[#2b3642] relative select-none rounded-md z-[40]">
             <div className="flex gap-2 justify-between items-center shadow-lg h-10 px-4 py-8 rounded-md dark:bg-[#2b3642] bg-white cursor-pointer"
               onClick={() => setShowFilter((prev) => ({ ...prev, sort: !prev.sort }))}>
-              <div className="text-sm md:text-[16px]">{sortPopulationWhich.length > 0 ? sortPopulationWhich : "Population"}</div>
+              <div className="text-sm md:text-[16px]">{sortPopulationWhich.length > 0 ? sortPopulationWhich : "Sort By Population"}</div>
               <div>
                 {showFilter.sort ? <FaChevronDown size={15} /> : <FaChevronUp size={15} />}
               </div>
@@ -240,6 +238,30 @@ const HomePage = () => {
                 {sortAscOrDesc.map((region) => (
                   <div key={region} className="cursor-pointer dark:hover:bg-gray-800 p-2 hover:bg-gray-100"
                     onClick={handleSort}>
+                    {region}
+                  </div>
+                ))}
+              </div>
+            )}
+          </section>
+          <section className="w-1/2 md:w-4/12 xl:w-2/12 h-auto flex flex-col gap-1 dark:bg-[#2b3642] relative select-none rounded-md">
+          <div className="flex gap-2 justify-between items-center shadow-lg h-10 px-4 py-8 rounded-md dark:bg-[#2b3642] bg-white cursor-pointer" onClick={() => setShowFilter((prev) => ({...prev, region : !prev.region}))}>
+              <div className="text-sm md:text-[16px]" >{regionName.length >0 ? regionName : "Filter by Region"}</div>
+              <div>
+                {showFilter.region ? (
+                  <FaChevronDown size={15} />   
+                ) : (
+                  <FaChevronUp size={15} />
+                )}
+              </div>
+            </div>
+            {showFilter.region && (
+              <div className="absolute top-full mt-1 left-0 w-full px-4 py-2 gap-2 bg-white shadow-md rounded-lg dark:bg-[#2b3642] z-1">
+                {filterRegionNames.map((region) => (
+                  <div
+                    key={region}
+                    className="cursor-pointer dark:hover:bg-gray-800 p-2 hover:bg-gray-100" onClick={handleRegionSearch}
+                  >
                     {region}
                   </div>
                 ))}
@@ -276,37 +298,13 @@ const HomePage = () => {
               </div>
             )}
           </section>
-          <section className="w-1/2 md:w-4/12 xl:w-2/12 h-auto flex flex-col gap-1 dark:bg-[#2b3642] relative select-none rounded-md">
-          <div className="flex gap-2 justify-between items-center shadow-lg h-10 px-4 py-8 rounded-md dark:bg-[#2b3642] bg-white cursor-pointer" onClick={() => setShowFilter((prev) => ({...prev, region : !prev.region}))}>
-              <div className="text-sm md:text-[16px]" >{regionName.length >0 ? regionName : "Filter by Region"}</div>
-              <div>
-                {showFilter.region ? (
-                  <FaChevronDown size={15} />   
-                ) : (
-                  <FaChevronUp size={15} />
-                )}
-              </div>
-            </div>
-            {showFilter.region && (
-              <div className="absolute top-full mt-1 left-0 w-full px-4 py-2 gap-2 bg-white shadow-md rounded-lg dark:bg-[#2b3642] z-1">
-                {filterRegionNames.map((region) => (
-                  <div
-                    key={region}
-                    className="cursor-pointer dark:hover:bg-gray-800 p-2 hover:bg-gray-100" onClick={handleRegionSearch}
-                  >
-                    {region}
-                  </div>
-                ))}
-              </div>
-            )}
-          </section>
      </section>
      
         <section className="flex justify-center gap-12 md:flex-row flex-wrap md:gap-12 md:justify-between md:p-auto">
             {
               allCountries.length ==0 ? <Loading /> : filterCountriesData.length ==0 ? <NoDataFound />
               :filterCountriesData.map((eachCountry)=>{
-                return  (<Link to={`/country/${eachCountry?.ccn3}`} key={eachCountry?.name?.common}>
+                return  (<Link to={`/country/${eachCountry?.name?.common}`} key={eachCountry?.name?.common}>
                    <EachCountry eachCountry={eachCountry}/>
                 </Link>)
                
