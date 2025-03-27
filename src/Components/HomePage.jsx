@@ -6,6 +6,7 @@ import NoDataFound from "./NoDataFound";
 import Loading from "./Loading";
 import { ThemeContext } from "./ThemeContext";
 import { Link } from "react-router-dom";
+
 const HomePage = () => {
   
   const [inputText, setInputText] = useState('');
